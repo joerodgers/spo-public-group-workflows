@@ -1,2 +1,2 @@
-# SiteTemplateApplicator
- Components for an Azure Function, Logic App and PowerShell scripts to create two PnP site templates in an O365 templates.
+# M365 Group Creation Workflows
+Components consist of two Azure Logic Apps and a key vault.  
