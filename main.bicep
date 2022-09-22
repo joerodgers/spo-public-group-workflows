@@ -128,11 +128,6 @@ module roles 'modules/roleAssignments.bicep' = {
                 roleDefinitionId: '4633458b-17de-408a-b874-0445c86b69e6' // Key Vault Secrets User - https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user
                 principalType: 'ServicePrincipal'
             }
-            //{
-            //    principalId: managedIdentity.properties.principalId
-            //    roleDefinitionId: 'f25e0fa2-a7c8-4377-a976-54943a77a395' // Key Vault Contributor - https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user
-            //    principalType: 'ServicePrincipal'
-            //}
         ]
     }
 }
