@@ -38,3 +38,10 @@ Logic App Workflow acts as a webhook endpoint which receives an HTTP POST reques
 
 #### API Connections
 The two API connections included in the solution are leveraged by the Logic Apps to access the Azure Key Vault and the Office365 Shared Mailbox.
+
+#### Application Principal Required permissions
+
+<p align="center" width="100%">
+    <img src="https://user-images.githubusercontent.com/28455042/193063331-49d9c61c-7a0f-412c-a25b-ff0386c1e62d.png"> 
+</p>
+
