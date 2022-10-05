@@ -1,4 +1,30 @@
-﻿# Client Prerequisites
+﻿# Owner Notifcation Process Flow
+```mermaid
+sequenceDiagram
+    participant spo as SharePoint Online (Site Design)
+    participant az as "Owner Notication" Logic App
+    participant own as M365 Group Owners
+    spo->>az: POST new site created metadata
+    az->>own: Sends email notification
+```
+
+# Public Label Process Flow
+```mermaid
+sequenceDiagram
+    participant own as M365 Group Owner
+    participant pa as Microsoft PowerApp
+    participant wf as Appproval Workflow
+    participant m2 as M2 Manager
+    participant la as "Apply Label" Logic App
+    own->>pa: Submit Public Site Request
+    pa->>wf: Start Approval Workflow
+    wf->>m2: Notify Approval Request
+    m2->>wf: Approves/Rejects Public Site Request
+    wf->>la: Approved Group POST
+    la->>own: Applies label and emails M365 group owners
+```
+
+# Client Prerequisites
 
 ## PowerShell Modules
 
@@ -54,13 +80,9 @@ Example usage:
     -ProductionDate "01/01/2023"
 ```
 
-<br>
-<br>
-
-
 # Azure Deployment
 
-After installing the necessary Azure Bicep Tools, deploy the bicep template to Azure by excecuting the *deploy-azure.ps1* script.  The script requires several parameters which instructs the deployment to the correct location with the environment specific parameters file (main.parameters.\<environment>.json).   
+After installing the necessary Azure Bicep Tools and two Azure PowerShell modules, deploy the bicep template to Azure by excecuting the *deploy-azure.ps1* script.  The script requires several parameters which instructs the deployment to the correct location with the environment specific parameters file (main.parameters.\<environment>.json).   
 
 Syntax:
 ```PowerShell
@@ -83,22 +105,26 @@ Example Usage:
 ```
 Note: If you deploy to an Azure region other than 'eastus' you will need to first update the Azure Logic Apps IP Address list in the *main.bicep* template file.  These IP address are used expliclty granted access to Azure KeyVault.
 ```
-<br>
-<br>
-
 # SharePoint Online Deployment
+
+After installing the PnP.PowerShell module, deploy the the site design and site script to your Office 365 tenant.  This implementation uses an app-only context to authentication to the SharePoint tenant admin center to deploy the components.  The application principal will need Sites.FullControl.All application permissions.
 
 Syntax:
 ```PowerShell
 .\deploy-spo.ps1 `
     -ClientId  <string> `
     -CertificateThumbprint <string> `
-    -WebHookUrl <string> 
+    -WebHookUrl <string> `
+    [-Principal <string[]>]
 ```
 Example Usage:
 ```PowerShell
 .\deploy-spo.ps1 `
     -ClientId  'b287cdf8-546b-4114-9cca-6f404272bd4c' `
     -CertificateThumbprint '90a7de419c18da348c17419dba63b42c2198789a' `
-    -WebHookUrl 'https://prod-53.eastus.logic.azure.com:443/workflows/...'
+    -WebHookUrl 'https://prod-53.eastus.logic.azure.com:443/workflows/...' `
+    -Principal 'john.doe@contoso.com','jane.doe@contoso.com','c:0t.c|tenant|338c481e-cabb-4075-bf49-b164c3936c0a'
+```
+```
+Note: The principal 'c:0t.c|tenant|338c481e-cabb-4075-bf49-b164c3936c0a' in the example above contains the ObjectId of an Azure AD security group.  The two otheriuser princiapls are the identifier claim values.
 ```
