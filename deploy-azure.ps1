@@ -1,4 +1,4 @@
-﻿#requires -modules "Az.Resources", "Az.Accounts", "Az.Websites"
+﻿#requires -modules "Az.Resources", "Az.Accounts"
 
 param
 (
