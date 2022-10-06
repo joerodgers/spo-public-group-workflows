@@ -2,7 +2,6 @@
 
 ## Workflow Process Flow
 ### Owner Notifcation Process Flow
-<kbd>
 ```mermaid
 sequenceDiagram
     participant spo as SharePoint Online (Site Design)
@@ -11,10 +10,8 @@ sequenceDiagram
     spo->>az: POST new site created metadata
     az->>own: Sends email notification
 ```
-</kbd>
 ### Public Label Process Flow
 
-<kbd>
 ```mermaid
 sequenceDiagram
     participant own as M365 Group Owner
@@ -29,7 +26,6 @@ sequenceDiagram
     wf->>la: Approved Group POST
     la->>own: Applies label and emails M365 group owners
 ```
-</kbd>
 ## Artifacts
 
 ### Overview
