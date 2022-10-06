@@ -1,30 +1,4 @@
-﻿# Owner Notifcation Process Flow
-```mermaid
-sequenceDiagram
-    participant spo as SharePoint Online (Site Design)
-    participant az as "Owner Notication" Logic App
-    participant own as M365 Group Owners
-    spo->>az: POST new site created metadata
-    az->>own: Sends email notification
-```
-
-# Public Label Process Flow
-```mermaid
-sequenceDiagram
-    participant own as M365 Group Owner
-    participant pa as Microsoft PowerApp
-    participant wf as Appproval Workflow
-    participant m2 as M2 Manager
-    participant la as "Apply Label" Logic App
-    own->>pa: Submit Public Site Request
-    pa->>wf: Start Approval Workflow
-    wf->>m2: Notify Approval Request
-    m2->>wf: Approves/Rejects Public Site Request
-    wf->>la: Approved Group POST
-    la->>own: Applies label and emails M365 group owners
-```
-
-# Client Prerequisites
+﻿# Client Prerequisites
 
 ## PowerShell Modules
 
