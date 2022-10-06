@@ -1,4 +1,7 @@
-# Owner Notifcation Process Flow
+# M365 Group Workflows
+
+## Workflow Process Flow
+### Owner Notifcation Process Flow
 ```mermaid
 sequenceDiagram
     participant spo as SharePoint Online (Site Design)
@@ -8,7 +11,7 @@ sequenceDiagram
     az->>own: Sends email notification
 ```
 
-# Public Label Process Flow
+### Public Label Process Flow
 ```mermaid
 sequenceDiagram
     participant own as M365 Group Owner
@@ -23,15 +26,15 @@ sequenceDiagram
     wf->>la: Approved Group POST
     la->>own: Applies label and emails M365 group owners
 ```
-# M365 Group Workflows
+## Artifacts
 
-### Artifacts created by the main.bicep template
+### Overview
 
 <p align="center" width="100%">
     <kbd><img src="https://user-images.githubusercontent.com/28455042/191819384-5d92790a-805e-4f2a-9728-188b47308562.png" width="800"></kbd> 
 </p>
 
-### Azure Key Vault Configuration
+### Azure Key Vault
 
 ---
 
