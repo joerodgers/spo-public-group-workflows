@@ -33,6 +33,7 @@ var eastus_datacenter = [
     '52.151.221.119'
 ]
 
+
 module logic_applylabel 'modules/logic-applylabel.bicep' = {
     name: toLower('logic-applylabel-${suffix}')
     scope: resourceGroup()
