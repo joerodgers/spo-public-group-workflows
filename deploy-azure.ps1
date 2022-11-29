@@ -25,7 +25,11 @@ param
 
     [Parameter(Mandatory=$false)]
     [securestring]
-    $CertificatePassword
+    $CertificatePassword,
+
+    [Parameter(Mandatory=$false)]
+    [switch]
+    $ForceCredentialRefresh
 )
 
 Import-Module -Name .\utils\resources.psm1 -Force -ErrorAction Stop
@@ -35,7 +39,7 @@ Import-Module -Name .\utils\resources.psm1 -Force -ErrorAction Stop
 
 $ctx = Get-AzContext
 
-if( $ctx.Tenant.Id -ne $TenantId.ToString() -or $ctx.Subscription.SubscriptionId -ne $SubscriptionId.ToString() )
+if( $ctx.Tenant.Id -ne $TenantId.ToString() -or $ctx.Subscription.SubscriptionId -ne $SubscriptionId.ToString() -or $ForceCredentialRefresh.IsPresent )
 {
     Write-Host "[$(Get-Date)] - Prompting for Azure credentials"
     Login-AzAccount -Tenant $TenantId -WarningAction SilentlyContinue
