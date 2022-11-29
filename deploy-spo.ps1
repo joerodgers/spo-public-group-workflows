@@ -18,7 +18,7 @@ param
     [string]
     $WebHookUrl,
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [string[]]
     $Principal
 )
